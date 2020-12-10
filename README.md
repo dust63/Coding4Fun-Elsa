@@ -28,3 +28,6 @@ Go to StartupFile and configure dependency injection for ELSA
  }
 ````
 
+Configure endpoints for Elsa dashboard
+
+**Add** `endpoints.MapControllers();`
