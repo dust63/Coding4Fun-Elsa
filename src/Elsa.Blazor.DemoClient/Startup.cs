@@ -36,17 +36,18 @@ namespace Elsa.Blazor.DemoClient
             services
                      .AddElsa(elsa => elsa
                      .AddEntityFrameworkStores<SqliteContext>(options => options
-                                     .UseSqlite(@"Data Source=C:\data\elsa.db;Cache=Shared")))
+                                     .UseSqlite(Configuration.GetConnectionString("SqlLite"))))                    
                     .AddElsaDashboard();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ElsaContext elsaDbcontext)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                elsaDbcontext.Database.EnsureCreated();
             }
             else
             {
@@ -62,7 +63,7 @@ namespace Elsa.Blazor.DemoClient
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
                 endpoints.MapControllers();
-            });
-        }
+            });     
+        }      
     }
 }

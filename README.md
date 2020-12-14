@@ -39,22 +39,40 @@ Go to StartupFile and configure dependency injection for ELSA
 
 ### Add SQL Lite persistence
 
-```
-dotnet add package Microsoft.EntityFrameworkCore
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet add package Microsoft.EntityFrameworkCore.Sqlite
-dotnet add package Elsa.Persistence.EntityFrameworkCore
-```
 
 Configure persistence dependencies
+
+Add connection string in your app settings
+
+```
+"ConnectionStrings": {
+    "SqlLite": "Data Source=c:\\data\\elsa.db;Cache=Shared;"
+  }
+```
+
+Add dependencies injection
 
 ```csharp
  services
          .AddElsa(elsa => elsa
          .AddEntityFrameworkStores<SqliteContext>(options => options
-                           .UseSqlite(@"Data Source=C:\data\elsa.db;Cache=Shared")));
+                                     .UseSqlite(Configuration.GetConnectionString("SqlLite"))))      
 ```
 
+Add elsacontext in the configure method
+
+```
+ public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ElsaContext elsaDbcontext)
+```
+And add db creation statement like this
+
+```
+if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                elsaDbcontext.Database.EnsureCreated();
+            }
+```
 ### Add dashboard for ELSA
 
 **Run** `dotnet add package Elsa.Dashboard`
