@@ -48,9 +48,9 @@ Configure persistence
 
 ```csharp
  services
-        .AddElsa(elsa => elsa
-            .AddEntityFrameworkStores<SqliteContext>(options => options
-                .UseSqlite("Data Source=c:\data\elsa.db;Cache=Shared"));
+         .AddElsa(elsa => elsa
+         .AddEntityFrameworkStores<SqliteContext>(options => options
+                           .UseSqlite(@"Data Source=C:\data\elsa.db;Cache=Shared")));
 ```
 
 Configure endpoints for Elsa dashboard
@@ -58,4 +58,4 @@ Configure endpoints for Elsa dashboard
 **Add** `endpoints.MapControllers();`
 
 
-Run your app and goto http://localhost:<port-user-by-kestrel>/elsa/home
+Run your app and goto http://localhost:{port-user-by-kestrel}/elsa/home
