@@ -1,6 +1,10 @@
 # Coding4Fun-Elsa
 Coding4Fun to present Elsa workflow
 
+###Requirement
+
+.Net 5
+Visual Studio Code
 
 ### Create a blazor server project
 
