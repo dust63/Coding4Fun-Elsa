@@ -1,6 +1,8 @@
 # Coding4Fun-Elsa
 Coding4Fun to present Elsa workflow
 
+If you want to known more about Elsa -> [here](https://elsa-workflows.github.io/elsa-core/docs/installing-elsa-core)
+
 ### Requirement
 
 - .Net 5
