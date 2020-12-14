@@ -13,6 +13,7 @@ using Elsa;
 using Elsa.Persistence.EntityFrameworkCore.Extensions;
 using Elsa.Persistence.EntityFrameworkCore.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using Elsa.Dashboard.Extensions;
 
 namespace Elsa.Blazor.DemoClient
 {
@@ -32,10 +33,11 @@ namespace Elsa.Blazor.DemoClient
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-             services
+            services
                      .AddElsa(elsa => elsa
                      .AddEntityFrameworkStores<SqliteContext>(options => options
-                                     .UseSqlite(@"Data Source=C:\data\elsa.db;Cache=Shared")));
+                                     .UseSqlite(@"Data Source=C:\data\elsa.db;Cache=Shared")))
+                    .AddElsaDashboard();
 
         }
 
