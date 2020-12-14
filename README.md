@@ -32,6 +32,28 @@ Go to StartupFile and configure dependency injection for ELSA
  }
 ````
 
+
+Add SQL Lite persistence
+
+```
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+dotnet add package Elsa.Persistence.EntityFrameworkCore
+```
+
+Configure persistence 
+
+```csharp
+ services
+        .AddElsa(elsa => elsa
+            .AddEntityFrameworkStores<SqliteContext>(options => options
+                .UseSqlite("Data Source=c:\data\elsa.db;Cache=Shared"));
+```
+
 Configure endpoints for Elsa dashboard
 
 **Add** `endpoints.MapControllers();`
+
+
+Run your app and goto http://localhost:<port-user-by-kestrel>/elsa/home
