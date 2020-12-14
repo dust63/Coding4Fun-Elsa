@@ -42,6 +42,10 @@ Go to StartupFile and configure dependency injection for ELSA
 
 Configure persistence dependencies
 
+Create db directory
+
+`mkdir C:\data`
+
 Add connection string in your app settings
 
 ```
