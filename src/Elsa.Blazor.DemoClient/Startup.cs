@@ -14,6 +14,14 @@ using Elsa.Persistence.EntityFrameworkCore.Extensions;
 using Elsa.Persistence.EntityFrameworkCore.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Elsa.Dashboard.Extensions;
+using Elsa.Activities.Http.Extensions;
+using Elsa.Activities.Timers.Extensions;
+using Elsa.Activities.Console.Extensions;
+using Elsa.Activities.Workflows.Extensions;
+using Elsa.Activities.UserTask.Extensions;
+using Elsa.Activities.Email.Extensions;
+using Elsa.Activities.ControlFlow.Extensions;
+using NodaTime;
 
 namespace Elsa.Blazor.DemoClient
 {
@@ -39,6 +47,15 @@ namespace Elsa.Blazor.DemoClient
                                      .UseSqlite(Configuration.GetConnectionString("SqlLite"))))                    
                     .AddElsaDashboard();
 
+            //Configure dependencies injection for activities
+            services
+                    .AddTimerActivities(options => options.Configure(x => x.SweepInterval = Duration.FromSeconds(1)))
+                    .AddConsoleActivities()
+                    .AddWorkflowActivities()
+                    .AddEmailActivities()
+                    .AddControlFlowActivities()
+                    .AddUserTaskActivities()
+                    .AddHttpActivities();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +72,7 @@ namespace Elsa.Blazor.DemoClient
             }
 
             app.UseStaticFiles();
+            app.UseHttpActivities();  
 
             app.UseRouting();
 
