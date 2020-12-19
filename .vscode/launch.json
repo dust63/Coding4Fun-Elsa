@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET Core Launch (console)",
+            "name": "Elsa Blazor(console)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "buildElsaBlazor",
             "program": "${workspaceFolder}/src/Elsa.Blazor.DemoClient/bin/Debug/net5.0/Elsa.Blazor.DemoClient.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Elsa.Blazor.DemoClient",
@@ -20,7 +20,7 @@
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "buildElsaBlazor",
             "program": "${workspaceFolder}/src/Elsa.Blazor.DemoClient/bin/Debug/net5.0/Elsa.Blazor.DemoClient.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Elsa.Blazor.DemoClient",
@@ -47,6 +47,18 @@
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
             }
+        },
+        {
+            "name": "Elsa console",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "buildConsole",
+            "program": "${workspaceFolder}/src/Elsa.Console.Demo/bin/Debug/net5.0/Elsa.Console.Demo.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Elsa.Console.Demo",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart"
         },
         {
             "name": ".NET Core Attach",
