@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
   </ItemGroup>
 
-  </Project>
+  <ItemGroup>
+        <None Remove="workflows\calculator.json"/>
+        <EmbeddedResource Include="workflows\calculator.json"/>
+    </ItemGroup>
+</Project>

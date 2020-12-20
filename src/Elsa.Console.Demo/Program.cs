@@ -19,14 +19,8 @@ namespace Elsa.Console.Demo
         {
             Configure();
 
-            ConsoleAction.Add("hello", new Show(() => RunHelloWorld(), "Use elsa to display hello world"));
-            ConsoleAction.Add("json", new Show(() =>
-            Task.Run(async () =>
-            {
-                var json = await ReadJsonFile("calculator.json");
-                System.Console.WriteLine(json);
-            })
-            , "Read json workflow"));
+            ConsoleAction.Add("hello", new Show(() => RunHelloWorld(), "Use elsa to display hello world. Awesome code ;)"));
+            ConsoleAction.Add("test-json", new Show(() => TestJson(), "Test to read json workflow"));
             //TODO INSERT YOUR AWESOME WORFKLOW DEMO HERE 
             //1-CALL WORKFLOW FROM JSON
 
@@ -92,13 +86,16 @@ namespace Elsa.Console.Demo
 
         }
 
-
-        private static async Task<string> ReadJsonFile(string filename)
+        private static async Task TestJson()
         {
-            var folder = AppDomain.CurrentDomain.BaseDirectory;
-            var filePath = Path.Combine(folder, "workflows", filename);
-
-            using var reader = new StreamReader(filePath);
+            var json = await ReadJsonWorkflowResource("calculator.json");
+            System.Console.WriteLine(json);
+        }
+        private static async Task<string> ReadJsonWorkflowResource(string resourceName)
+        {
+            var assembly = typeof(Program).Assembly;
+            var resourcePath = $"{typeof(Program).Assembly.GetName().Name}.workflows.{resourceName}";
+            using var reader = new StreamReader(assembly.GetManifestResourceStream(resourcePath));
             return await reader.ReadToEndAsync();
         }
 
