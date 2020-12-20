@@ -56,7 +56,7 @@
             "program": "${workspaceFolder}/src/Elsa.Console.Demo/bin/Debug/net5.0/Elsa.Console.Demo.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Elsa.Console.Demo",
-            "console": "internalConsole",
+            "console": "externalTerminal",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart"
         },
