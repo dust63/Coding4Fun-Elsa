@@ -10,4 +10,4 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
   </ItemGroup>
 
-</Project>
+  </Project>

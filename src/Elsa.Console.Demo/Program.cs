@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Elsa.Activities.Console.Activities;
 using Elsa.Activities.Console.Extensions;
@@ -19,7 +20,14 @@ namespace Elsa.Console.Demo
             Configure();
 
             ConsoleAction.Add("hello", new Show(() => RunHelloWorld(), "Use elsa to display hello world"));
-            //TO INSERT YOUR AWESOME WORFKLOW DEMO HERE 
+            ConsoleAction.Add("json", new Show(() =>
+            Task.Run(async () =>
+            {
+                var json = await ReadJsonFile("calculator.json");
+                System.Console.WriteLine(json);
+            })
+            , "Read json workflow"));
+            //TODO INSERT YOUR AWESOME WORFKLOW DEMO HERE 
             //1-CALL WORKFLOW FROM JSON
 
             //2-USE CUSTOM ACTIVITY
@@ -84,6 +92,15 @@ namespace Elsa.Console.Demo
 
         }
 
+
+        private static async Task<string> ReadJsonFile(string filename)
+        {
+            var folder = AppDomain.CurrentDomain.BaseDirectory;
+            var filePath = Path.Combine(folder, "workflows", filename);
+
+            using var reader = new StreamReader(filePath);
+            return await reader.ReadToEndAsync();
+        }
 
         /// <summary>
         /// Dependency injection configuration
