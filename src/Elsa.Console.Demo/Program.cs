@@ -8,6 +8,11 @@ using Elsa.Expressions;
 using Elsa.Extensions;
 using Elsa.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Elsa.Shared;
+using Elsa.Models;
+using Elsa.Services.Models;
+using System.Data;
+using System.Linq;
 
 namespace Elsa.Console.Demo
 {
@@ -21,6 +26,7 @@ namespace Elsa.Console.Demo
 
             ConsoleAction.Add("hello", new Show(() => RunHelloWorld(), "Use elsa to display hello world. Awesome code ;)"));
             ConsoleAction.Add("test-json", new Show(() => TestJson(), "Test to read json workflow"));
+            ConsoleAction.Add("calculator", new Show(() => CalculatorDemo.Run(services), "Run calculator with custom activity"));
             //TODO INSERT YOUR AWESOME WORFKLOW DEMO HERE 
             //1-CALL WORKFLOW FROM JSON
 
@@ -30,28 +36,6 @@ namespace Elsa.Console.Demo
             ConsoleAction.Add("cls", new Show(() => Task.Run(() => System.Console.Clear()), "Clear your console"));
 
             await Run();
-        }
-
-        /// <summary>
-        /// Demo to use elsa to invoke console activity that display an amazing text ;)
-        /// </summary>
-        /// <returns></returns>
-        static async Task RunHelloWorld()
-        {
-
-            // Get a workflow builder.
-            var workflowBuilder = services.GetRequiredService<IWorkflowBuilder>();
-
-            // Define a workflow and add a single activity.
-            var workflowDefinition = workflowBuilder
-                .StartWith<WriteLine>(x => x.TextExpression = new LiteralExpression("Hello world!"))
-                .Build();
-
-            // Get a workflow invoker,
-            var invoker = services.GetService<IWorkflowInvoker>();
-
-            // Start the workflow.
-            await invoker.StartAsync(workflowDefinition);
         }
 
 
@@ -105,20 +89,37 @@ namespace Elsa.Console.Demo
         static void Configure()
         {
             // Setup a service collection.
-            services = new ServiceCollection()
-
-            // Add essential workflow services.
+            var definitions = new ServiceCollection();
+            definitions
             .AddElsa()
+            .AddConsoleActivities();
 
-            // Add Console activities (ReadLine and WriteLine).
-            .AddConsoleActivities()
+            definitions.AddActivity<CalculatorActivity>();
 
-            .BuildServiceProvider();
+            services = definitions.BuildServiceProvider();
         }
 
 
+        /// <summary>
+        /// Demo to use elsa to invoke console activity that display an amazing text ;)
+        /// </summary>
+        /// <returns></returns>
+        static async Task RunHelloWorld()
+        {
+            // Get a workflow builder.
+            var workflowBuilder = services.GetRequiredService<IWorkflowBuilder>();
 
+            // Define a workflow and add a single activity.
+            var workflowDefinition = workflowBuilder
+                .StartWith<WriteLine>(x => x.TextExpression = new LiteralExpression("Hello world!"))
+                .Build();
 
+            // Get a workflow invoker,
+            var invoker = services.GetService<IWorkflowInvoker>();
+
+            // Start the workflow.
+            await invoker.StartAsync(workflowDefinition);
+        }
 
 
         internal class Show

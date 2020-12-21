@@ -22,6 +22,7 @@ using Elsa.Activities.UserTask.Extensions;
 using Elsa.Activities.Email.Extensions;
 using Elsa.Activities.ControlFlow.Extensions;
 using NodaTime;
+using Elsa.Shared;
 
 namespace Elsa.Blazor.DemoClient
 {
@@ -44,7 +45,7 @@ namespace Elsa.Blazor.DemoClient
             services
                      .AddElsa(elsa => elsa
                      .AddEntityFrameworkStores<SqliteContext>(options => options
-                                     .UseSqlite(Configuration.GetConnectionString("SqlLite"))))                    
+                                     .UseSqlite(Configuration.GetConnectionString("SqlLite"))))
                     .AddElsaDashboard();
 
             //Configure dependencies injection for activities
@@ -56,6 +57,8 @@ namespace Elsa.Blazor.DemoClient
                     .AddControlFlowActivities()
                     .AddUserTaskActivities()
                     .AddHttpActivities();
+
+            services.AddActivity<CalculatorActivity>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,7 +75,7 @@ namespace Elsa.Blazor.DemoClient
             }
 
             app.UseStaticFiles();
-            app.UseHttpActivities();  
+            app.UseHttpActivities();
 
             app.UseRouting();
 
@@ -81,7 +84,7 @@ namespace Elsa.Blazor.DemoClient
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
                 endpoints.MapControllers();
-            });     
-        }      
+            });
+        }
     }
 }

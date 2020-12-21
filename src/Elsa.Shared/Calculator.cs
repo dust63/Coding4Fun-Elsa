@@ -1,6 +1,6 @@
 using System;
 
-namespace Elsa.Console.Demo
+namespace Elsa.Shared
 {
     public class Calculator
     {
@@ -15,11 +15,11 @@ namespace Elsa.Console.Demo
 
         public int Value2 { get; }
 
-        public Operator Operator { get; set; }
 
-        public int Calculate()
+
+        public int Calculate(Operator operatorCalcul)
         {
-            switch (Operator)
+            switch (operatorCalcul)
             {
                 case Operator.Add:
                     return Value1 + Value2;
@@ -39,10 +39,10 @@ namespace Elsa.Console.Demo
     public enum Operator
     {
 
-        Add,
-        Substract,
-        Multiply,
-        Divide
+        Add = 1,
+        Substract = 2,
+        Multiply = 3,
+        Divide = 4
     }
 
 }

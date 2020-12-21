@@ -11,7 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-        <None Remove="workflows\calculator.json"/>
-        <EmbeddedResource Include="workflows\calculator.json"/>
+        <None Remove="workflows\calculator.json" />
+        <EmbeddedResource Include="workflows\calculator.json" />
     </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Elsa.Shared\Elsa.Shared.csproj" />
+  </ItemGroup>
 </Project>
