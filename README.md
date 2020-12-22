@@ -175,7 +175,7 @@ Connect all your activities that you added.
 
 Publish your workflow. Go to the bottom buggy scroll page ;).
 
-### No we will the power of workflow ;)
+### No we will see the power of workflow ;)
 
 We will try to trigger two activities in parallel when we receive the http request.
 
