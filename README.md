@@ -3,6 +3,10 @@ Coding4Fun to present Elsa workflow
 
 If you want to known more about Elsa -> [here](https://elsa-workflows.github.io/elsa-core/docs/installing-elsa-core)
 
+## Presentation
+
+[Click here](/src/Presentation/index.html)
+
 ### Requirement
 
 --------------------------
@@ -85,7 +89,7 @@ if (env.IsDevelopment())
 
 --------------------------
 
-**Run** `dotnet add package Elsa.Dashboard`
+**Execute** `dotnet add package Elsa.Dashboard`
 
 **Add dependecies configuration**
 

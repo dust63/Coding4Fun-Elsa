@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Elsa Blazor(console)",
+            "name": "Elsa Blazor Demo",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "buildElsaBlazor",
@@ -13,6 +13,18 @@
             "args": [],
             "cwd": "${workspaceFolder}/src/Elsa.Blazor.DemoClient",
             "console": "internalConsole",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart"
+        },      
+        {
+            "name": "Elsa Console",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "buildConsole",
+            "program": "${workspaceFolder}/src/Elsa.Console.Demo/bin/Debug/net5.0/Elsa.Console.Demo.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Elsa.Console.Demo",
+            "console": "externalTerminal",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart"
         },
@@ -47,18 +59,6 @@
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
             }
-        },
-        {
-            "name": "Elsa console",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "buildConsole",
-            "program": "${workspaceFolder}/src/Elsa.Console.Demo/bin/Debug/net5.0/Elsa.Console.Demo.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/src/Elsa.Console.Demo",
-            "console": "externalTerminal",
-            "stopAtEntry": false,
-            "internalConsoleOptions": "openOnSessionStart"
         },
         {
             "name": ".NET Core Attach",

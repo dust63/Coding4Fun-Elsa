@@ -13,8 +13,7 @@ namespace Elsa.Shared
     DisplayName = "Calcualtor",
     Description = "Make some arythmetic operation",
     Icon = "fas fa-calculator",
-    Outcomes = new[] { OutcomeNames.Done }
-)]
+    Outcomes = new[] { OutcomeNames.Done })]
     public class CalculatorActivity : Activity
     {
         private IWorkflowExpressionEvaluator _expressionEvaluator;

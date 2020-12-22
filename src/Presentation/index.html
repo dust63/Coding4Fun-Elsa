@@ -84,33 +84,81 @@
                 </section>       
                 <section data-markdown>
                     <textarea data-template>
-                        ## Build
+                        ## Build like a Boss 🦾
                         
                         Build workflows in code using the fluent API or as data using JSON or YAML syntax.
-                        Or use the workflow designer to design executable workflows visually.
-                        Elsa comes with an ASP.NET Core area that provides a dashboard to manage workflows and activities.
+                        ```csharp
+                        public class HelloWorldWorkflow : IWorkflow
+                        {
+                            public void Build(IWorkflowBuilder builder)
+                            {
+                                builder
+                                    .StartWith<HelloWorld>()
+                                    .Then<GoodByeWorld>();
+                            }
+                        }
+                        ```                       
                     </textarea>
-                </section>    
+                </section>  
+                
                 <section data-markdown>
                     <textarea data-template>
-                        ## Run
+                        ## or build like business 🐣
+                  
+                        Use the workflow designer to design executable workflows visually.                     
+
+                        ![dashboard](./images/elsa-dashboard.png)
+                    </textarea>
+                </section> 
+                 
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Run 🕹
 
                         Run workflows from within your application using simple to use APIs.                        
                         Start or resume workflows manually, or automatically by invoking triggers.
+
+                        ```csharp
+                        // Get a workflow builder.
+                        var workflowBuilder = services.GetRequiredService<IWorkflowBuilder>();
+            
+                        // Define a workflow and add a single activity.
+                        var workflowDefinition = workflowBuilder
+                            .StartWith<WriteLine>(x => x.TextExpression = new LiteralExpression("Hello world!"))
+                            .Build();
+            
+                        // Get a workflow invoker,
+                        var invoker = services.GetService<IWorkflowInvoker>();
+            
+                        // Start the workflow.
+                        await invoker.StartAsync(workflowDefinition);
+                        ```
                     </textarea>
                 </section>  
                 <section data-markdown>
                     <textarea data-template>
-                        ## Extend
+                        ## Extend 🧩
 
                         Make it your own by extending the set of activities with your own.
                         
                         Implementing custom activities allows for powerful workflows that can be implemented with ease.
+
+                        ```csharp
+                        [ActivityDefinition(
+                        DisplayName = "Calcualtor",
+                        Description = "Make some arythmetic operation",
+                        Icon = "fas fa-calculator",
+                        Outcomes = new[] { OutcomeNames.Done })]
+                        public class CalculatorActivity : Activity
+                        {
+        
+                        ...
+                        ````
                     </textarea>
                 </section>  
                 <section data-markdown>
                     <textarea data-template>
-                        ### Pros
+                        ### Pros ✅
 
                         - New features added regularly
                         - Developer very active 
@@ -123,7 +171,7 @@
                 </section>                 
                 <section data-markdown>
                     <textarea data-template>
-                        ### Cons
+                        ### Cons ❌
 
                         - Developer are constantly adding feature (potential bug)
                         - Young project since 2019     
@@ -143,19 +191,46 @@
                         - Activities(HTTP, Email, DropBox, MassTransit, Timers, Control flow,Primitives...)
                         - Expression at runtime (Javascript Expression, Liquid Expression, Custom expression evaluator)
                     </textarea>
+                </section>
                     <section data-markdown>
                         <textarea data-template>
-                            ### Features
+                            ### It's time to code. 🔩 
+                            
+                            Please intall:
     
-                            - Visual Workflow Designer
-                            - Dashboarding
-                            - Short and Long Running Workflows
-                            - Correlation     
-                            - Persistence (CosmoDB, EF Core, Memory, MongoDb, YesSQL and more)
-                            - Activities(HTTP, Email, DropBox, MassTransit, Timers, Control flow,Primitives...)
-                            - Expression at runtime (Javascript Expression, Liquid Expression, Custom expression evaluator)
+                            - VS Code (install plugin C#)
+                            - Git
+                            - .Net SDK 5
+
+                            <br>
+                            <br>
+                            <br>  
+                            Git clone: https://github.com/dust63/Coding4Fun-Elsa.git
+
                         </textarea>
-                </section>           
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### Git clone. 🐑
+
+                        https://github.com/dust63/Coding4Fun-Elsa.git
+
+                    </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### Step 1 - Use blazor project
+                    
+                    Run Blazor project (use the debugger "Elsa Blazor") or     
+                    ```
+                    cd .\src\Elsa.Blazor.DemoClient\
+                    dotnet build
+                    dotnet run
+                    ```
+                    Explore [Elsa dashboard](http://localhost:5000/elsa)                  
+                </textarea>
+        </section>
+                    
 			</div>
 		</div>
 
