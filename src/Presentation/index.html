@@ -1,35 +1,37 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Coding4fun - NetArchTest</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/moon.css" id="theme">
+    <title>Coding4fun - NetArchTest</title>
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-			    <section>
-                    <h2> Coding 4 fun</h2>                                  
-                    <img  src="./images/elsa-icon.png" width="250"  >
-                    <h4> Elsa Workflow </h3>  
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/moon.css" id="theme">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h2> Coding 4 fun</h2>
+                <img src="./images/elsa-icon.png" width="250">
+                <h3> Elsa Workflow </h3>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
                         Slides : <https://github.com/dust63/Coding4Fun-Elsa>  
                         Elsa site: <https://elsa-workflows.github.io/elsa-core/> 
                         Elsa repo : <https://github.com/elsa-workflows/elsa-core>
                     </textarea>
-                </section>           
-                <section data-markdown>
-                    <textarea data-template>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
                         ### What is a workflow
                         
                         A workflow consists of a series of steps called activities that are connected to one another.<br>
@@ -38,19 +40,19 @@
                         - Which activity is currently executing.
                         - What variables are set.
                         - What activities are blocking further execution.
-                    </textarea>          
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
+                    </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
                         ### So to define a workflow you need
                         
                         - **Activities** 🠖 Action or control 
                         - **Connector** 🠖 Interconnection between activities
                         - **States** 🠖 To identity in wich state are or was the activity
-                    </textarea>          
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
+                    </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
                         ### Why to use workflow solution
                         
                         - More flexible
@@ -59,20 +61,20 @@
                         - Can be update dynamicly without need to rebuild your app
                         - Elimintate redundant code by create generic activity
                         - Can be use and run by the business
-                    </textarea>          
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
+                    </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
                         ### Some worklows solution
                         
                         - [Microsoft flow/Power Automate](https://flow.microsoft.com/fr-fr)
                         - [Workflow Engine](https://workflowengine.io/)
                         - [Asana](https://asana.com/)
                         - [Kissflow](https://kissflow.com/)
-                    </textarea>          
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
+                    </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
                         ### Elsa workflow
                         
                         An open source .NET Standard(2.0) workflows library
@@ -80,10 +82,10 @@
                         Minimum : Net Framework 4.6.1 and .Net Core 2.0
                         
                         ![elsa-logo](./images/elsa-icon.png)
-                    </textarea>          
-                </section>       
-                <section data-markdown>
-                    <textarea data-template>
+                    </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
                         ## Build like a Boss 🦾
                         
                         Build workflows in code using the fluent API or as data using JSON or YAML syntax.
@@ -99,20 +101,20 @@
                         }
                         ```                       
                     </textarea>
-                </section>  
-                
-                <section data-markdown>
-                    <textarea data-template>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
                         ## or build like business 🐣
                   
                         Use the workflow designer to design executable workflows visually.                     
 
                         ![dashboard](./images/elsa-dashboard.png)
                     </textarea>
-                </section> 
-                 
-                <section data-markdown>
-                    <textarea data-template>
+            </section>
+
+            <section data-markdown>
+                <textarea data-template>
                         ## Run 🕹
 
                         Run workflows from within your application using simple to use APIs.                        
@@ -134,9 +136,9 @@
                         await invoker.StartAsync(workflowDefinition);
                         ```
                     </textarea>
-                </section>  
-                <section data-markdown>
-                    <textarea data-template>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
                         ## Extend 🧩
 
                         Make it your own by extending the set of activities with your own.
@@ -155,9 +157,9 @@
                         ...
                         ````
                     </textarea>
-                </section>  
-                <section data-markdown>
-                    <textarea data-template>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
                         ### Pros ✅
 
                         - New features added regularly
@@ -168,9 +170,9 @@
                         - User friendly dashboard and workflow designer    
                         - Open source and free (BSD3 licence)    
                     </textarea>
-                </section>                 
-                <section data-markdown>
-                    <textarea data-template>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
                         ### Cons ❌
 
                         - Developer are constantly adding feature (potential bug)
@@ -178,9 +180,9 @@
                         - Documentation is not complete (Missing info for some activities)
                         - No warranty            
                     </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
                         ### Features
 
                         - Visual Workflow Designer
@@ -191,9 +193,9 @@
                         - Activities(HTTP, Email, DropBox, MassTransit, Timers, Control flow,Primitives...)
                         - Expression at runtime (Javascript Expression, Liquid Expression, Custom expression evaluator)
                     </textarea>
-                </section>
-                    <section data-markdown>
-                        <textarea data-template>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
                             ### It's time to code. 🔩 
                             
                             Please intall:
@@ -208,47 +210,42 @@
                             Git clone: https://github.com/dust63/Coding4Fun-Elsa.git
 
                         </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        ### Git clone. 🐑
-
-                        https://github.com/dust63/Coding4Fun-Elsa.git
-
-                    </textarea>
             </section>
             <section data-markdown>
                 <textarea data-template>
-                    ### Step 1 - Use blazor project
-                    
-                    Run Blazor project (use the debugger "Elsa Blazor") or     
-                    ```
-                    cd .\src\Elsa.Blazor.DemoClient\
-                    dotnet build
-                    dotnet run
-                    ```
-                    Explore [Elsa dashboard](http://localhost:5000/elsa)                  
-                </textarea>
-        </section>
-                    
-			</div>
-		</div>
+                        ### Git clone. [🐑](https://github.com/dust63/Coding4Fun-Elsa.git)
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
-             
+                        ```
+                        https://github.com/dust63/Coding4Fun-Elsa.git
+                        ```
+                        <br>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+                        >#### Follow the [readme.md](https://github.com/dust63/Coding4Fun-Elsa/blob/main/README.md)
+
+                        <br><br><br>*Thanks for watching*
+                    </textarea>
+            </section>
+
+
+        </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+
+
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+        });
+    </script>
+</body>
+
 </html>

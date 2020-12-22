@@ -37,6 +37,7 @@
             "args": [],
             "cwd": "${workspaceFolder}/src/Elsa.Blazor.DemoClient",
             "stopAtEntry": false,
+            "console": "internalConsole",
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {
                 "enabled": true,

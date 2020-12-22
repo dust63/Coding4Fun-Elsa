@@ -56,7 +56,8 @@ namespace Elsa.Blazor.DemoClient
                     .AddEmailActivities()
                     .AddControlFlowActivities()
                     .AddUserTaskActivities()
-                    .AddHttpActivities();
+                    .AddHttpActivities()
+                    .AddActivity<CalculatorActivity>();
 
             services.AddActivity<CalculatorActivity>();
         }

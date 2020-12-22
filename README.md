@@ -19,7 +19,7 @@ If you want to known more about Elsa -> [here](https://elsa-workflows.github.io/
 --------------------------
 
 ```powershell
- dotnet new blazorserver -o Elsa.Blazor.DemoClient --no-https  
+ dotnet new blazorserver -o Elsa.Blazor.Client --no-https  
  ```
  
  ### Add Elsa nuget package
@@ -28,7 +28,7 @@ If you want to known more about Elsa -> [here](https://elsa-workflows.github.io/
  
  
 ```powershell
-cd .\src\Elsa.Blazor.DemoClient\
+cd .\src\Elsa.Blazor.Client\
 dotnet add package Elsa
 dotnet add package Elsa.Dashboard
 dotnet build
@@ -208,6 +208,9 @@ dotnet new console --name Elsa.ConsoleClient
 cd Elsa.ConsoleClient
 dotnet add package Elsa
 dotnet add package Microsoft.Extensions.DependencyInjection
+dotnet add package Elsa
+dotnet add package Elsa.Activities.Console
+dotnet add package Elsa.Activities.ControlFlow
 ```
 
 Add in the csproj
@@ -230,9 +233,8 @@ Add in the Program cs the Configure method
             var definitions = new ServiceCollection();
             definitions
             .AddElsa()
-            .AddConsoleActivities();
-
-            definitions.AddActivity<CalculatorActivity>();
+            .AddConsoleActivities()
+            .AddControlFlowActivities();            
 
             services = definitions.BuildServiceProvider();
         }
@@ -241,19 +243,9 @@ Add in the Program cs the Configure method
 Call it from the Main method
 
 ```csharp
-         /// <summary>
-        /// Dependency injection configuration
-        /// </summary>
-        static void Configure()
+    static async Task Main(string[] args)
         {
-            // Setup a service collection.
-            var definitions = new ServiceCollection();
-            definitions
-            .AddElsa()
-            .AddConsoleActivities();        
-
-            services = definitions.BuildServiceProvider();
-        }
+            Configure();
 ```
 
 
