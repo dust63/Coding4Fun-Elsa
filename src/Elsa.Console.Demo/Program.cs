@@ -25,7 +25,7 @@ namespace Elsa.Console.Demo
             Configure();
             await new ShowHelper()
             //1 Simple hello world
-            .Add("hello", () => RunHelloWorld(), "Use elsa to display hello world. Awesome code ;)")
+            .Add("hello", () => HelloWorldDemo.Run(services), "Use elsa to display hello world. Awesome code ;)")
 
             //2-USE CUSTOM ACTIVITY
             .Add("calculator", () => CalculatorDemo.Run(services), "Run calculator with custom activity")
@@ -53,26 +53,6 @@ namespace Elsa.Console.Demo
         }
 
 
-        /// <summary>
-        /// Demo to use elsa to invoke console activity that display an amazing text ;)
-        /// </summary>
-        /// <returns></returns>
-        static async Task RunHelloWorld()
-        {
-            // Get a workflow builder.
-            var workflowBuilder = services.GetRequiredService<IWorkflowBuilder>();
-
-            // Define a workflow and add a single activity.
-            var workflowDefinition = workflowBuilder
-                .StartWith<WriteLine>(x => x.TextExpression = new LiteralExpression("Hello world!"))
-                .Build();
-
-            // Get a workflow invoker,
-            var invoker = services.GetService<IWorkflowInvoker>();
-
-            // Start the workflow.
-            await invoker.StartAsync(workflowDefinition);
-        }
 
 
 
