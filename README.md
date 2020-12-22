@@ -198,8 +198,63 @@ Link the two activity and publish the workflow. See your debug console. You will
 
 In the next episode we will try to invoke by code.
 
+### Using console app
 
+Return to the root of you project in the **src** folder 
 
+```
+cd src
+dotnet new console --name Elsa.ConsoleClient
+cd Elsa.ConsoleClient
+dotnet add package Elsa
+dotnet add package Microsoft.Extensions.DependencyInjection
+```
+
+Add in the csproj
+
+```
+ <ItemGroup>
+    <ProjectReference Include="..\Elsa.Shared\Elsa.Shared.csproj" />
+  </ItemGroup>
+```
+
+Add in the Program cs the Configure method
+
+```csharp
+         /// <summary>
+        /// Dependency injection configuration
+        /// </summary>
+        static void Configure()
+        {
+            // Setup a service collection.
+            var definitions = new ServiceCollection();
+            definitions
+            .AddElsa()
+            .AddConsoleActivities();
+
+            definitions.AddActivity<CalculatorActivity>();
+
+            services = definitions.BuildServiceProvider();
+        }
+```
+
+Call it from the Main method
+
+```csharp
+         /// <summary>
+        /// Dependency injection configuration
+        /// </summary>
+        static void Configure()
+        {
+            // Setup a service collection.
+            var definitions = new ServiceCollection();
+            definitions
+            .AddElsa()
+            .AddConsoleActivities();        
+
+            services = definitions.BuildServiceProvider();
+        }
+```
 
 
 

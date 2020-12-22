@@ -9,12 +9,7 @@
     <PackageReference Include="Elsa" Version="1.5.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
   </ItemGroup>
-
-  <ItemGroup>
-        <None Remove="workflows\calculator.json" />
-        <EmbeddedResource Include="workflows\calculator.json" />
-    </ItemGroup>
-
+ 
   <ItemGroup>
     <ProjectReference Include="..\Elsa.Shared\Elsa.Shared.csproj" />
   </ItemGroup>
