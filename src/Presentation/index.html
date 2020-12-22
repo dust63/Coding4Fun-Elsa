@@ -1,0 +1,298 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Coding4fun - NetArchTest</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+                    <textarea data-template>
+                        # Coding4fun         
+                        
+                        ## NetArchTest
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Slides : <https://github.com/StephenNunes/coding4fun-netarchtest>  
+                        
+                        Repo : <https://github.com/BenMorris/NetArchTest>
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### NetArchTest
+                        
+                        Fluent test library for .NET  
+                        
+                        Minimum : Net Framework 4.6.1 and .Net Core 2.0      
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Inspired by ArchUnit from Java
+                    </textarea>
+                </section>
+				<section data-markdown>
+                    <textarea data-template>
+                        Test architecture of projects  
+                          
+                        Guarantee following architecture guidelines during life of the project
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        * Many developers  
+                        * Long time  
+                        * New best practices  
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### How-to  
+                        
+                        Using rules  
+                        
+                        Example :  
+                        ``` csharp
+                        bool result = Types.InAssembly(typeof(CakeViewModel).Assembly)
+                            .That()
+                            .ResideInNamespace("MyAwesomeApplication.PresentationLayer.ViewModels")
+                            .ShouldNot()
+                            .HaveDependencyOn("MyAwesomeApplication.DataAccessLayer")
+                            .GetResult()
+                            .IsSuccessful;
+                        ```
+                    </textarea>
+                </section>
+                
+                <section data-markdown>
+                    <textarea data-template>
+                        Details 1/6
+                        
+                        ``` csharp
+                        Types.InAssembly(typeof(CakeViewModel).Assembly).That()
+                        ```
+                        
+                        Load list of classes/interfaces from the concerned assembly  
+                        Be able to target namespace or path
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Details 2/6
+                        
+                        ``` csharp
+                        .ResideInNamespace("MyAwesomeApplication.PresentationLayer.ViewModels")
+                        ```
+                        Filter by using predicates  
+                        
+                        .And() and .Or() can be used to chain them
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Details 3/6
+                        
+                        ``` csharp
+                        .ResideInNamespace()
+                        .AreInterfaces()
+                        .AreClasses()
+                        ```
+                        
+                        List of predicates here : <https://github.com/BenMorris/NetArchTest/blob/master/src/NetArchTest.Rules/Predicates.cs>
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Details 4/6
+                        
+                        ``` csharp
+                        .ShouldNot()
+                        ```
+                        
+                        Indicate how to resolve the condition with .Should() or .ShouldNot()
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Details 5/6
+                        
+                        ``` csharp
+                        .BeClasses()
+                        .ResideInNamespace()
+                        ```
+                        
+                        List of conditions here : <https://github.com/BenMorris/NetArchTest/blob/master/src/NetArchTest.Rules/Conditions.cs>
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Details 6/6
+                        
+                        ``` csharp
+                        .GetResult()
+                        .IsSuccessful()
+                        ```
+                        
+                        Get the result in a boolean type
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Writing your own rule (for predicates and conditions)  
+                        
+                        ``` csharp
+                        public class CustomRule : ICustomRule
+                        {
+                            public bool MeetsRule(TypeDefinition type)
+                            {
+                                return true;
+                            }
+                        }
+                        ```
+                        
+                        ``` csharp
+                        var myRule = new CustomRule();
+
+                        result = Types.InCurrentDomain()
+                            .That().AreClasses()
+                            .Should()
+                            .MeetCustomRule(myRule)
+                            .GetResult().IsSuccessful;
+                        ```
+
+                         Check library <https://github.com/jbevain/cecil/tree/master/Mono.Cecil>
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Use Policies to group rules
+                        
+                        ``` csharp
+                        var architecturePolicy = Policy.Define("Passing Policy", "This policy demonstrated a valid passing policy with reasonable rules")
+                            .For(Types.InCurrentDomain)
+                            .Add(t =>
+                               t.That()
+                               .ResideInNamespace("NetArchTest.SampleLibrary.Presentation")
+                               .ShouldNot()
+                               .HaveDependencyOn("NetArchTest.SampleLibrary.Data"),
+                               "Enforcing layered architecture", "Controllers should not directly reference repositories"
+                            )
+                            .Add(t =>
+                                t.That().HaveDependencyOn("System.Data")
+                                .And().ResideInNamespace(("ArchTest"))
+                                .Should().ResideInNamespace("NetArchTest.SampleLibrary.Data"),
+                                "Controlling external dependencies", "Only classes in the data namespace can have a dependency on System.Data"
+                            )
+                        ```
+                        Evaluate the rules of the policy by method .Evaluate()                 
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        Coding time                 
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        * Visual studio code (or your favorite text editor)
+                        * Git
+                        * .NET core 3.1
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        git clone <https://github.com/StephenNunes/coding4fun-netarchtest>                
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        To build project (.csproj)  
+                        `dotnet build`  
+                        
+                        To run mstest  
+                        `dotnet test`
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Step 1
+                        
+                        Test if View models classes do not reference classes contains into DataAccessLayer
+                        (MyAwesomeApplication\DataAccessLayer)
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Step 2
+                        
+                        Test if View classes get their name ends by "View"
+                        (MyAwesomeApplication\PresentationLayer\Views)
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Step 3
+                        
+                        Test if View models classes implements INotifyPropertyChanged
+                        (MyAwesomeApplication\PresentationLayer\ViewModels)
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Step 4
+                        
+                        Test if Repository classes (locate them by namespace instead of Assembly) get their name ends by "Repository"
+                        (MyAwesomeApplication\PresentationLayer\DataAccessLayer)
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Step 5
+                        
+                        Create your own rule which verify that Factory classes got at least one method which begin with "Create"
+                        (NetArchTest use Mono.Cecil library for reflection, check it here : <https://github.com/jbevain/cecil/tree/master/Mono.Cecil>)
+                        (MyAwesomeApplication\PresentationLayer\BusinessLayer)
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Step 6
+                        
+                        Create a policy of rules created in Step 2 and Step 3
+                        (MyAwesomeApplication\PresentationLayer\Views)
+                        (MyAwesomeApplication\PresentationLayer\ViewModels)
+                    </textarea>
+                </section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
