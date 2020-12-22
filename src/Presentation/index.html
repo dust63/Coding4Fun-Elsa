@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/white.css" id="theme">
+		<link rel="stylesheet" href="dist/theme/moon.css" id="theme">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
@@ -16,266 +16,146 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-markdown>
-                    <textarea data-template>
-                        # Coding4fun         
-                        
-                        ## NetArchTest
-                    </textarea>
+			    <section>
+                    <h2> Coding 4 fun</h2>                                  
+                    <img  src="./images/elsa-icon.png" width="250"  >
+                    <h4> Elsa Workflow </h3>  
                 </section>
                 <section data-markdown>
                     <textarea data-template>
-                        Slides : <https://github.com/StephenNunes/coding4fun-netarchtest>  
-                        
-                        Repo : <https://github.com/BenMorris/NetArchTest>
+                        Slides : <https://github.com/dust63/Coding4Fun-Elsa>  
+                        Elsa site: <https://elsa-workflows.github.io/elsa-core/> 
+                        Elsa repo : <https://github.com/elsa-workflows/elsa-core>
                     </textarea>
-                </section>
+                </section>           
                 <section data-markdown>
                     <textarea data-template>
-                        ### NetArchTest
+                        ### What is a workflow
                         
-                        Fluent test library for .NET  
-                        
-                        Minimum : Net Framework 4.6.1 and .Net Core 2.0      
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        Inspired by ArchUnit from Java
-                    </textarea>
-                </section>
-				<section data-markdown>
-                    <textarea data-template>
-                        Test architecture of projects  
-                          
-                        Guarantee following architecture guidelines during life of the project
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        * Many developers  
-                        * Long time  
-                        * New best practices  
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        ### How-to  
-                        
-                        Using rules  
-                        
-                        Example :  
-                        ``` csharp
-                        bool result = Types.InAssembly(typeof(CakeViewModel).Assembly)
-                            .That()
-                            .ResideInNamespace("MyAwesomeApplication.PresentationLayer.ViewModels")
-                            .ShouldNot()
-                            .HaveDependencyOn("MyAwesomeApplication.DataAccessLayer")
-                            .GetResult()
-                            .IsSuccessful;
-                        ```
-                    </textarea>
-                </section>
-                
-                <section data-markdown>
-                    <textarea data-template>
-                        Details 1/6
-                        
-                        ``` csharp
-                        Types.InAssembly(typeof(CakeViewModel).Assembly).That()
-                        ```
-                        
-                        Load list of classes/interfaces from the concerned assembly  
-                        Be able to target namespace or path
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        Details 2/6
-                        
-                        ``` csharp
-                        .ResideInNamespace("MyAwesomeApplication.PresentationLayer.ViewModels")
-                        ```
-                        Filter by using predicates  
-                        
-                        .And() and .Or() can be used to chain them
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        Details 3/6
-                        
-                        ``` csharp
-                        .ResideInNamespace()
-                        .AreInterfaces()
-                        .AreClasses()
-                        ```
-                        
-                        List of predicates here : <https://github.com/BenMorris/NetArchTest/blob/master/src/NetArchTest.Rules/Predicates.cs>
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        Details 4/6
-                        
-                        ``` csharp
-                        .ShouldNot()
-                        ```
-                        
-                        Indicate how to resolve the condition with .Should() or .ShouldNot()
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        Details 5/6
-                        
-                        ``` csharp
-                        .BeClasses()
-                        .ResideInNamespace()
-                        ```
-                        
-                        List of conditions here : <https://github.com/BenMorris/NetArchTest/blob/master/src/NetArchTest.Rules/Conditions.cs>
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        Details 6/6
-                        
-                        ``` csharp
-                        .GetResult()
-                        .IsSuccessful()
-                        ```
-                        
-                        Get the result in a boolean type
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        Writing your own rule (for predicates and conditions)  
-                        
-                        ``` csharp
-                        public class CustomRule : ICustomRule
-                        {
-                            public bool MeetsRule(TypeDefinition type)
-                            {
-                                return true;
-                            }
-                        }
-                        ```
-                        
-                        ``` csharp
-                        var myRule = new CustomRule();
+                        A workflow consists of a series of steps called activities that are connected to one another.<br>
+                        A workflow maintains all sorts of information, such as the following:
 
-                        result = Types.InCurrentDomain()
-                            .That().AreClasses()
-                            .Should()
-                            .MeetCustomRule(myRule)
-                            .GetResult().IsSuccessful;
-                        ```
+                        - Which activity is currently executing.
+                        - What variables are set.
+                        - What activities are blocking further execution.
+                    </textarea>          
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### So to define a workflow you need
+                        
+                        - **Activities** 🠖 Action or control 
+                        - **Connector** 🠖 Interconnection between activities
+                        - **States** 🠖 To identity in wich state are or was the activity
+                    </textarea>          
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### Why to use workflow solution
+                        
+                        - More flexible
+                        - More comprehensible algorythm/logic definition
+                        - More visualizable
+                        - Can be update dynamicly without need to rebuild your app
+                        - Elimintate redundant code by create generic activity
+                        - Can be use and run by the business
+                    </textarea>          
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### Some worklows solution
+                        
+                        - [Microsoft flow/Power Automate](https://flow.microsoft.com/fr-fr)
+                        - [Workflow Engine](https://workflowengine.io/)
+                        - [Asana](https://asana.com/)
+                        - [Kissflow](https://kissflow.com/)
+                    </textarea>          
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                        ### Elsa workflow
+                        
+                        An open source .NET Standard(2.0) workflows library
+                        
+                        Minimum : Net Framework 4.6.1 and .Net Core 2.0
+                        
+                        ![elsa-logo](./images/elsa-icon.png)
+                    </textarea>          
+                </section>       
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Build
+                        
+                        Build workflows in code using the fluent API or as data using JSON or YAML syntax.
+                        Or use the workflow designer to design executable workflows visually.
+                        Elsa comes with an ASP.NET Core area that provides a dashboard to manage workflows and activities.
+                    </textarea>
+                </section>    
+                <section data-markdown>
+                    <textarea data-template>
+                        ## Run
 
-                         Check library <https://github.com/jbevain/cecil/tree/master/Mono.Cecil>
+                        Run workflows from within your application using simple to use APIs.                        
+                        Start or resume workflows manually, or automatically by invoking triggers.
                     </textarea>
-                </section>
+                </section>  
                 <section data-markdown>
                     <textarea data-template>
-                        Use Policies to group rules
+                        ## Extend
+
+                        Make it your own by extending the set of activities with your own.
                         
-                        ``` csharp
-                        var architecturePolicy = Policy.Define("Passing Policy", "This policy demonstrated a valid passing policy with reasonable rules")
-                            .For(Types.InCurrentDomain)
-                            .Add(t =>
-                               t.That()
-                               .ResideInNamespace("NetArchTest.SampleLibrary.Presentation")
-                               .ShouldNot()
-                               .HaveDependencyOn("NetArchTest.SampleLibrary.Data"),
-                               "Enforcing layered architecture", "Controllers should not directly reference repositories"
-                            )
-                            .Add(t =>
-                                t.That().HaveDependencyOn("System.Data")
-                                .And().ResideInNamespace(("ArchTest"))
-                                .Should().ResideInNamespace("NetArchTest.SampleLibrary.Data"),
-                                "Controlling external dependencies", "Only classes in the data namespace can have a dependency on System.Data"
-                            )
-                        ```
-                        Evaluate the rules of the policy by method .Evaluate()                 
+                        Implementing custom activities allows for powerful workflows that can be implemented with ease.
+                    </textarea>
+                </section>  
+                <section data-markdown>
+                    <textarea data-template>
+                        ### Pros
+
+                        - New features added regularly
+                        - Developer very active 
+                        - Support by .Net foundation
+                        - Realy open to extensions
+                        - Modern solution using last technologies
+                        - User friendly dashboard and workflow designer    
+                        - Open source and free (BSD3 licence)    
+                    </textarea>
+                </section>                 
+                <section data-markdown>
+                    <textarea data-template>
+                        ### Cons
+
+                        - Developer are constantly adding feature (potential bug)
+                        - Young project since 2019     
+                        - Documentation is not complete (Missing info for some activities)
+                        - No warranty            
                     </textarea>
                 </section>
                 <section data-markdown>
                     <textarea data-template>
-                        Coding time                 
+                        ### Features
+
+                        - Visual Workflow Designer
+                        - Dashboarding
+                        - Short and Long Running Workflows
+                        - Correlation     
+                        - Persistence (CosmoDB, EF Core, Memory, MongoDb, YesSQL and more)
+                        - Activities(HTTP, Email, DropBox, MassTransit, Timers, Control flow,Primitives...)
+                        - Expression at runtime (Javascript Expression, Liquid Expression, Custom expression evaluator)
                     </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        * Visual studio code (or your favorite text editor)
-                        * Git
-                        * .NET core 3.1
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        git clone <https://github.com/StephenNunes/coding4fun-netarchtest>                
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        To build project (.csproj)  
-                        `dotnet build`  
-                        
-                        To run mstest  
-                        `dotnet test`
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        ## Step 1
-                        
-                        Test if View models classes do not reference classes contains into DataAccessLayer
-                        (MyAwesomeApplication\DataAccessLayer)
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        ## Step 2
-                        
-                        Test if View classes get their name ends by "View"
-                        (MyAwesomeApplication\PresentationLayer\Views)
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        ## Step 3
-                        
-                        Test if View models classes implements INotifyPropertyChanged
-                        (MyAwesomeApplication\PresentationLayer\ViewModels)
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        ## Step 4
-                        
-                        Test if Repository classes (locate them by namespace instead of Assembly) get their name ends by "Repository"
-                        (MyAwesomeApplication\PresentationLayer\DataAccessLayer)
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        ## Step 5
-                        
-                        Create your own rule which verify that Factory classes got at least one method which begin with "Create"
-                        (NetArchTest use Mono.Cecil library for reflection, check it here : <https://github.com/jbevain/cecil/tree/master/Mono.Cecil>)
-                        (MyAwesomeApplication\PresentationLayer\BusinessLayer)
-                    </textarea>
-                </section>
-                <section data-markdown>
-                    <textarea data-template>
-                        ## Step 6
-                        
-                        Create a policy of rules created in Step 2 and Step 3
-                        (MyAwesomeApplication\PresentationLayer\Views)
-                        (MyAwesomeApplication\PresentationLayer\ViewModels)
-                    </textarea>
-                </section>
+                    <section data-markdown>
+                        <textarea data-template>
+                            ### Features
+    
+                            - Visual Workflow Designer
+                            - Dashboarding
+                            - Short and Long Running Workflows
+                            - Correlation     
+                            - Persistence (CosmoDB, EF Core, Memory, MongoDb, YesSQL and more)
+                            - Activities(HTTP, Email, DropBox, MassTransit, Timers, Control flow,Primitives...)
+                            - Expression at runtime (Javascript Expression, Liquid Expression, Custom expression evaluator)
+                        </textarea>
+                </section>           
 			</div>
 		</div>
 
@@ -289,6 +169,7 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
+             
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
